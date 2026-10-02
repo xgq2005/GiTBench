@@ -1,0 +1,232 @@
+<?xml version="1.0"?>
+<robot name="shoebox_30x20x2_with_lid">
+
+  <!-- ================= 材质 ================= -->
+  <material name="cardboard_color">
+    <color rgba="0.82 0.65 0.48 1.0"/>
+  </material>
+
+  <material name="lid_color">
+    <color rgba="0.78 0.60 0.42 1.0"/>
+  </material>
+
+  <!-- ================= 底座 ================= -->
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0.00125"/>
+      <geometry>
+        <box size="0.30 0.20 0.0025"/>
+      </geometry>
+      <material name="cardboard_color"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0.00125"/>
+      <geometry>
+        <box size="0.30 0.20 0.0025"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <mass value="0.06"/>
+      <origin xyz="0 0 0.00125"/>
+      <inertia ixx="1.2e-3" ixy="0" ixz="0"
+               iyy="1.2e-3" iyz="0"
+               izz="1.2e-3"/>
+    </inertial>
+  </link>
+
+  <!-- ================= 前壁 ================= -->
+  <link name="front_wall">
+    <visual>
+      <origin xyz="0 0.10125 0.025"/>
+      <geometry>
+        <box size="0.305 0.0025 0.05"/>
+      </geometry>
+      <material name="cardboard_color"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0.10125 0.025"/>
+      <geometry>
+        <box size="0.305 0.0025 0.05"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- ================= 后壁 ================= -->
+  <link name="back_wall">
+    <visual>
+      <origin xyz="0 -0.10125 0.025"/>
+      <geometry>
+        <box size="0.305 0.0025 0.05"/>
+      </geometry>
+      <material name="cardboard_color"/>
+    </visual>
+    <collision>
+      <origin xyz="0 -0.10125 0.025"/>
+      <geometry>
+        <box size="0.305 0.0025 0.05"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- ================= 左侧壁 ================= -->
+  <link name="left_wall">
+    <visual>
+      <origin xyz="-0.15125 0 0.025"/>
+      <geometry>
+        <box size="0.0025 0.205 0.05"/>
+      </geometry>
+      <material name="cardboard_color"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.15125 0 0.025"/>
+      <geometry>
+        <box size="0.0025 0.205 0.05"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- ================= 右侧壁 ================= -->
+  <link name="right_wall">
+    <visual>
+      <origin xyz="0.15125 0 0.025"/>
+      <geometry>
+        <box size="0.0025 0.205 0.05"/>
+      </geometry>
+      <material name="cardboard_color"/>
+    </visual>
+    <collision>
+      <origin xyz="0.15125 0 0.025"/>
+      <geometry>
+        <box size="0.0025 0.205 0.05"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- ================= 盒体固定关节 ================= -->
+  <joint name="j_front" type="fixed">
+    <parent link="base_link"/>
+    <child link="front_wall"/>
+  </joint>
+
+  <joint name="j_back" type="fixed">
+    <parent link="base_link"/>
+    <child link="back_wall"/>
+  </joint>
+
+  <joint name="j_left" type="fixed">
+    <parent link="base_link"/>
+    <child link="left_wall"/>
+  </joint>
+
+  <joint name="j_right" type="fixed">
+    <parent link="base_link"/>
+    <child link="right_wall"/>
+  </joint>
+
+  <!-- ============================================
+       鞋盒盖子（顶板 + 三边边缘）
+       ============================================ -->
+
+  <!-- ================= 盖子顶板 ================= -->
+  <link name="lid_top">
+    <visual>
+      <origin xyz="0 0.1 0.0025"/>
+      <geometry>
+        <box size="0.305 0.205 0.005"/>
+      </geometry>
+      <material name="lid_color"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0.0025"/>
+      <geometry>
+        <box size="0.305 0.205 0.005"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <mass value="0.04"/>
+      <origin xyz="0 0 0.0025"/>
+      <inertia ixx="8e-4" ixy="0" ixz="0"
+               iyy="8e-4" iyz="0"
+               izz="8e-4"/>
+    </inertial>
+  </link>
+
+  <!-- ================= 盖子前边缘 ================= -->
+  <link name="lid_front_edge">
+    <visual>
+      <origin xyz="0 0.20375 -0.025"/>
+      <geometry>
+        <box size="0.305 0.0025 0.05"/>
+      </geometry>
+      <material name="lid_color"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0.10375 -0.025"/>
+      <geometry>
+        <box size="0.305 0.0025 0.05"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- ================= 盖子左边缘 ================= -->
+  <link name="lid_left_edge">
+    <visual>
+      <origin xyz="-0.15375 0.1 -0.025"/>
+      <geometry>
+        <box size="0.0025 0.205 0.05"/>
+      </geometry>
+      <material name="lid_color"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.15375 0 -0.025"/>
+      <geometry>
+        <box size="0.0025 0.205 0.05"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- ================= 盖子右边缘 ================= -->
+  <link name="lid_right_edge">
+    <visual>
+      <origin xyz="0.15375 0.1 -0.025"/>
+      <geometry>
+        <box size="0.0025 0.205 0.05"/>
+      </geometry>
+      <material name="lid_color"/>
+    </visual>
+    <collision>
+      <origin xyz="0.15375 0 -0.025"/>
+      <geometry>
+        <box size="0.0025 0.205 0.05"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- ================= 盖子关节 ================= -->
+  <joint name="lid_joint" type="fixed">
+   <parent link="base_link"/>
+    <child link="lid_top"/>
+    <origin xyz="0 -0.1025 0.0525"
+          rpy="3.14 0 0"/>
+  </joint>
+
+  <joint name="j_lid_front" type="fixed">
+    <parent link="lid_top"/>
+    <child link="lid_front_edge"/>
+  </joint>
+
+  <joint name="j_lid_left" type="fixed">
+    <parent link="lid_top"/>
+    <child link="lid_left_edge"/>
+  </joint>
+
+  <joint name="j_lid_right" type="fixed">
+    <parent link="lid_top"/>
+    <child link="lid_right_edge"/>
+  </joint>
+
+</robot>

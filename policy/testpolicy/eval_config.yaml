@@ -1,0 +1,46 @@
+# Standard policy-local GITBench evaluation configuration.
+policy: testpolicy:make_policy
+
+tasks:
+  - bio2
+  - bio4
+  - bio5
+  - ind2
+  - ind3
+  - ind5
+  - house1
+  - house3
+  - house5
+
+split: test
+episodes: 1          # Run one test episode for each selected task.
+start_episode: 0
+max_steps: null      # null: use task_config/task_catalog.json.
+stop_on_success: false  # Smoke policy should run to each task's max_steps.
+success_mode: ever
+terminate_on_success: false
+
+observation:
+  mode: rgbd
+
+render:
+  mode: rgb_array
+  shader: default
+  sim_backend: auto
+
+video:
+  enabled: true
+  fps: 30
+
+resume: true
+
+output:
+  root: eval_results
+  run_name: testpolicy
+  timestamp: true
+  # To continue a specific previous run, set this to that run directory and
+  # keep resume: true. It takes precedence over root/run_name/timestamp.
+  run_dir: null
+  log_file: log.json
+  summary_file: summary.json
+  video_dir: videos

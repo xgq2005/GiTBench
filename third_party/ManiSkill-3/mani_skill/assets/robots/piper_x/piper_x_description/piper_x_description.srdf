@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<robot name="piper_x_description">
+  <group name="arm">
+    <joint name="joint1"/>
+    <joint name="joint2"/>
+    <joint name="joint3"/>
+    <joint name="joint4"/>
+    <joint name="joint5"/>
+    <joint name="joint6"/>
+    <joint name="joint7"/>
+    <joint name="joint8"/>
+  </group>
+  <group name="gripper">
+    <joint name="joint7"/>
+    <joint name="joint8"/>
+  </group>
+  <group name="manipulator">
+    <chain base_link="base_link" tip_link="camera_link"/>
+  </group>
+  <end_effector name="gripper" parent_link="camera_link" group="gripper"/>
+  <virtual_joint name="virtual_joint" type="fixed" parent_frame="world" child_link="base_link"/>
+  <disable_collisions link1="base_link" link2="Link1" reason="Adjacent links"/>
+  <disable_collisions link1="Link1" link2="Link2" reason="Adjacent links"/>
+  <disable_collisions link1="Link2" link2="Link3" reason="Adjacent links"/>
+  <disable_collisions link1="Link3" link2="Link4" reason="Adjacent links"/>
+  <disable_collisions link1="Link4" link2="Link5" reason="Adjacent links"/>
+  <disable_collisions link1="Link5" link2="Link6" reason="Adjacent links"/>
+  <disable_collisions link1="Link6" link2="Link7" reason="Adjacent links"/>
+  <disable_collisions link1="Link7" link2="Link8" reason="Adjacent links"/>
+  <disable_collisions link1="Link8" link2="piper_x_hand_tcp" reason="Adjacent links"/>
+  <disable_collisions link1="piper_x_hand_tcp" link2="camera_link" reason="Adjacent links"/>
+  <disable_collisions link1="base_link" link2="camera_link" reason="Base and end effector"/>
+  <group_state name="home" group="arm">
+    <joint name="joint1" value="0.0"/>
+    <joint name="joint2" value="1.57"/>
+    <joint name="joint3" value="-1.48355"/>
+    <joint name="joint4" value="0.0"/>
+    <joint name="joint5" value="0.0"/>
+    <joint name="joint6" value="0.0"/>
+    <joint name="joint7" value="0.025"/>
+    <joint name="joint8" value="-0.025"/>
+  </group_state>
+  <passive_joint name="tcp_joint"/>
+  <passive_joint name="camera_joint"/>
+</robot>

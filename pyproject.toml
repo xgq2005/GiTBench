@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gitbench"
+version = "0.4.0"
+description = "A lightweight ManiSkill benchmark wrapper for HI-VLA evaluation tasks."
+requires-python = ">=3.10,<3.11"
+dependencies = [
+  "gymnasium>=0.29.1",
+  "numpy>=1.22,<2",
+  "scipy",
+  "pyyaml",
+  "transforms3d",
+  "trimesh",
+  "imageio",
+  "imageio-ffmpeg",
+  "IPython",
+  "tqdm",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["gitbench*"]
