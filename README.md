@@ -16,25 +16,17 @@
 
 <p align="center">
   <a href="https://kk-stephen.github.io/grounded-in-time/">GiT website</a> ·
-  <a href="https://github.com/xgq2005/GiT">GiT GitHub</a> ·
+  <a href="https://github.com/xgq2005/GiTBench">GiT GitHub</a> ·
   <a href="<ARXIV_URL>">arXiv</a> ·
-  <a href="https://huggingface.co/datasets/XGQ12345/GIT_hdf5">GiT Hugging Face</a> ·
-  <a href="https://www.modelscope.cn/datasets/xgq12345/GIT_hdf5">GiT ModelScope</a>
+  <a href="https://huggingface.co/datasets/XGQ12345/GiTBench_sim_train_lerobotv3">GiT Hugging Face</a> ·
+  <a href="https://www.modelscope.cn/datasets/xgq12345/GiTBench_sim_train_lerobotv3">GiT ModelScope</a>
 </p>
 
 GiTBench is a simulation benchmark for temporal grounding in robot manipulation under perceptual ambiguity. The target object cannot always be identified from the current frame alone: several objects may look similar, while the instruction refers to an event in the episode history, such as the object filled last, the object placed first, or the object just handed over. Solving the task therefore requires using the demonstration and interaction history together with the current visual observation.
 
 This repository packages the benchmark itself: its fixed simulator episodes, task manifest, local assets, evaluation scripts, and common policy interface. It contains nine simulation tasks and is designed to measure whether a policy can recover the temporally grounded reference and execute the corresponding manipulation.
 
-## Links
-
-- [Website](https://kk-stephen.github.io/grounded-in-time/)
-- [GitHub](https://github.com/xgq2005/GiT)
-- [arXiv](ARXIV_URL)
-- [Hugging Face dataset](https://huggingface.co/datasets/XGQ12345/GIT_hdf5)
-- [ModelScope dataset](https://www.modelscope.cn/datasets/xgq12345/GIT_hdf5)
-
-## Benchmark scope
+## 🎯 Benchmark scope
 
 The benchmark contains nine tasks:
 
@@ -46,7 +38,7 @@ Each task has 60 fixed test episodes, for 540 episodes total. The manifest divid
 
 The repository includes the required assets and a vendored ManiSkill runtime. A separate simulator repository, external asset directory, or HDF5 dataset is not needed for benchmark evaluation.
 
-## Install the benchmark environment
+## 🛠️ Install the benchmark environment
 
 Use Python 3.10. Install a PyTorch build that matches your CUDA driver. The command below is an example for PyTorch 2.7 with CUDA 12.8; adjust the versions and index URL for your machine.
 
@@ -68,7 +60,7 @@ python -m pip install -e .
 
 The local ManiSkill installation is required because GITBench imports the runtime from `third_party/ManiSkill-3`. The root requirements install the remaining benchmark dependencies. `opencv-python` and data-collection dependencies are not required for evaluation.
 
-## Run a smoke evaluation
+## 💨 Run a smoke evaluation
 
 The reference `testpolicy` returns zero actions and checks the complete evaluation pipeline. It runs one episode for each configured task and writes results under `eval_results/`.
 
@@ -82,7 +74,7 @@ Check the resolved command without starting the simulator:
 bash policy/testpolicy/evaluate.sh --dry-run
 ```
 
-## Run evaluations directly
+## 🚀 Run evaluations directly
 
 Use the built-in `zero` policy for a minimal direct run:
 
@@ -117,7 +109,7 @@ Common options:
 
 The policy launcher reads `policy/testpolicy/eval_config.yaml`. Set `episodes: null` there to run every episode in the configured split. Its standard output directory is a timestamped subdirectory of `eval_results/` containing `log.json`, `summary.json`, the resolved configuration, and optional videos.
 
-## Results and scoring
+## 📊 Results and scoring
 
 Each episode is classified as:
 
@@ -129,7 +121,7 @@ The primary metric is episode-level success rate. If success and failure occur o
 
 Process completion is a supplementary `[0, 1]` metric based on weighted milestones such as contact, grasping, movement, and reaching a goal. It does not change the binary result. See `PROCESS_COMPLETION.md` for the milestone rules, dependencies, log fields, and aggregate metrics.
 
-## Custom policies
+## 🧩 Custom policies
 
 Add a package under `policy/` with a `make_policy(action_space)` factory. The returned object must implement `act(obs, info=None)` and may implement `reset(...)`. Use `policy/testpolicy` as the minimal template:
 
@@ -142,7 +134,7 @@ policy/<policy_name>/
 
 For a standard launcher, copy the reference policy, update the `policy:` value in `eval_config.yaml`, and implement the policy factory. RDT, pi05, LeRobot pi05, and HAMLET have model-specific environments and dependencies; they are optional and are not needed for the built-in benchmark or reference policy.
 
-## Citation
+## 📖 Citation
 
 If you find this benchmark useful, please cite:
 
@@ -157,10 +149,10 @@ If you find this benchmark useful, please cite:
 }
 ```
 
-## Acknowledgments
+## 🙏 Acknowledgments
 
 We thank the ManiSkill team for their open-source simulation platform and the work that makes this benchmark's manipulation environments possible.
 
-## Contact
+## 📬 Contact
 
 For questions, issues, or collaboration, please open an issue on the [GitHub repository](https://github.com/xgq2005/GiT) or contact `3211440644@qq.com`.
