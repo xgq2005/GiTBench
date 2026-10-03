@@ -151,7 +151,7 @@ If you find this benchmark useful, please cite:
 
 ## 🙏 Acknowledgments
 
-We thank the ManiSkill team for their open-source simulation platform and the work that makes this benchmark's manipulation environments possible.
+We thank the ManiSkill-3 team for their open-source simulation platform and the work that makes this benchmark's manipulation environments possible.
 
 ## 📬 Contact
 
