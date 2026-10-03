@@ -1,6 +1,6 @@
 # GiTBench
 
-> GiTBench ：a simulation benchmark for temporal grounding in robot manipulation.
+> GiTBench ：a simulation benchmark for temporal grounding in robotic manipulation.
 
 <p align="center">
   <img src="asset/gitbench.png" alt="GITBench benchmark teaser" width="90%">
