@@ -1,6 +1,6 @@
 # GiTBench
 
-> GiTBench ：a simulation benchmark for temporal grounding in robot manipulation.
+> GiTBench ：a simulation benchmark for temporal grounding in robotic manipulation.
 
 <p align="center">
   <img src="asset/gitbench.png" alt="GITBench benchmark teaser" width="90%">
@@ -15,11 +15,11 @@
 </p>
 
 <p align="center">
-  <a href="https://kk-stephen.github.io/grounded-in-time/">GiT website</a> ·
-  <a href="https://github.com/xgq2005/GiTBench">GiT GitHub</a> ·
+  <a href="https://kk-stephen.github.io/grounded-in-time/">Website</a> ·
+  <a href="https://github.com/xgq2005/GiTBench">GitHub</a> ·
   <a href="<ARXIV_URL>">arXiv</a> ·
-  <a href="https://huggingface.co/datasets/XGQ12345/GiTBench_sim_train_lerobotv3">GiT Hugging Face</a> ·
-  <a href="https://www.modelscope.cn/datasets/xgq12345/GiTBench_sim_train_lerobotv3">GiT ModelScope</a>
+  <a href="https://huggingface.co/datasets/XGQ12345/GiTBench_sim_train_lerobotv3">Hugging Face</a> ·
+  <a href="https://www.modelscope.cn/datasets/xgq12345/GiTBench_sim_train_lerobotv3">ModelScope</a>
 </p>
 
 GiTBench is a simulation benchmark for temporal grounding in robot manipulation under perceptual ambiguity. The target object cannot always be identified from the current frame alone: several objects may look similar, while the instruction refers to an event in the episode history, such as the object filled last, the object placed first, or the object just handed over. Solving the task therefore requires using the demonstration and interaction history together with the current visual observation.
@@ -141,7 +141,7 @@ If you find this benchmark useful, please cite:
 ```bibtex
 @article{groundedintime,
   title   = {Grounded in Time: Benchmarking Temporal Grounding under
-             Perceptual Ambiguity in Vision-Language-Action Models},
+             Perceptual Ambiguity in Robotic Manipulation},
   author  = {Yi Wang and Yang Yang and Guangqi Xu and Sumin Lin and Ning Kang and
              Pengxiang Lu and Xiaotong Chen and Zeyu Xue and Chenguang Yang and Zhenyu Lu},
   journal = {arXiv preprint arXiv:<ARXIV_ID>},
@@ -151,8 +151,8 @@ If you find this benchmark useful, please cite:
 
 ## 🙏 Acknowledgments
 
-We thank the ManiSkill team for their open-source simulation platform and the work that makes this benchmark's manipulation environments possible.
+We thank the ManiSkill-3 team for their open-source simulation platform and the work that makes this benchmark's manipulation environments possible.
 
 ## 📬 Contact
 
-For questions, issues, or collaboration, please open an issue on the [GitHub repository](https://github.com/xgq2005/GiT) or contact `3211440644@qq.com`.
+For questions, issues, or collaboration, please open an issue on the [GitHub repository](https://github.com/xgq2005/GiT) or contact.
