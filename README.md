@@ -155,4 +155,4 @@ We thank the ManiSkill-3 team for their open-source simulation platform and the 
 
 ## 📬 Contact
 
-For questions, issues, or collaboration, please open an issue on the [GitHub repository](https://github.com/xgq2005/GiT) or contact `3211440644@qq.com`.
+For questions, issues, or collaboration, please open an issue on the [GitHub repository](https://github.com/xgq2005/GiTBench) or contact `3211440644@qq.com`.
