@@ -1,0 +1,12 @@
+# Optional model configuration for external launchers. The standard GITBench
+# launcher uses eval_config.yaml.
+policy_name: Your_Policy
+task_name: null
+task_config: null
+ckpt_setting: null
+seed: null
+instruction_type: unseen
+
+# Placeholder model parameters. Override these in a model-specific launcher.
+action_dim: 14
+chunk_size: 1

@@ -1,0 +1,487 @@
+{
+  "format": "gitbench_task_catalog_v1",
+  "benchmark": {
+    "name": "GITBench",
+    "version": "0.4.0"
+  },
+  "tasks": [
+    {
+      "id": "bio2",
+      "environment": {
+        "gym_id": "NewSampleContainer",
+        "module": "mani_skill.envs.tasks.biolab_task.new_sample_container"
+      },
+      "domain": "biolab",
+      "source": {
+        "family": "lpx",
+        "kind": "task_implementation"
+      },
+      "default_reset": {
+        "seed": 0,
+        "layout_id": 4,
+        "params": {
+          "layout_config": {
+            "containers": [
+              "C1",
+              "C2",
+              "C3",
+              "C4",
+              "C5"
+            ],
+            "positions": {
+              "C1": [
+                0.0,
+                -0.2,
+                0.01
+              ],
+              "C2": [
+                0.0,
+                -0.1,
+                0.01
+              ],
+              "C3": [
+                0.0,
+                0.0,
+                0.01
+              ],
+              "C4": [
+                0.0,
+                0.1,
+                0.01
+              ],
+              "C5": [
+                0.0,
+                0.2,
+                0.01
+              ]
+            },
+            "red_pad_pos": [
+              -0.25,
+              -0.25,
+              0.003
+            ],
+            "yellow_pad_pos": [
+              -0.25,
+              0.25,
+              0.003
+            ]
+          },
+          "target_container": "C1",
+          "distractor_event": {
+            "type": "D1"
+          },
+          "repeat_id": 1
+        }
+      },
+      "max_steps": 2300,
+      "evaluator": {
+        "rules": [
+          "objects_in_pad"
+        ],
+        "default_params": {
+          "object_refs": [
+            "C2",
+            "C3",
+            "C4",
+            "C5"
+          ],
+          "center": [
+            -0.25,
+            -0.25,
+            0.003
+          ],
+          "half_extents": [
+            0.175,
+            0.08
+          ],
+          "metric": "xy"
+        },
+        "description": "All target beakers must be on the requested pad, matching the LPX bio2 task description."
+      }
+    },
+    {
+      "id": "bio4",
+      "environment": {
+        "gym_id": "Scene_L4_01",
+        "module": "mani_skill.envs.tasks.custom_task.biolab.Scene_L4_01"
+      },
+      "domain": "biolab",
+      "source": {
+        "family": "kn",
+        "kind": "task_implementation"
+      },
+      "default_reset": {
+        "seed": 0,
+        "layout_id": 0,
+        "params": {
+          "beaker_position_index": 0,
+          "repeat_id": 1
+        }
+      },
+      "max_steps": 1800,
+      "evaluator": {
+        "rules": [
+          "object_in_rectangle"
+        ],
+        "default_params": {
+          "object_ref": "beaker1",
+          "center": [
+            -0.35,
+            0.0
+          ],
+          "half_extents": [
+            0.12,
+            0.1
+          ],
+          "metric": "xy"
+        },
+        "description": "The evaluator-only target beaker must lie within the configured rectangular tray interior in XY."
+      }
+    },
+    {
+      "id": "bio5",
+      "environment": {
+        "gym_id": "Scene_L5_02",
+        "module": "mani_skill.envs.tasks.custom_task.biolab.Scene_L5_02"
+      },
+      "domain": "biolab",
+      "source": {
+        "family": "kn",
+        "kind": "task_implementation"
+      },
+      "default_reset": {
+        "seed": 0,
+        "layout_id": 0,
+        "params": {
+          "repeat_id": 1
+        }
+      },
+      "max_steps": 4300,
+      "evaluator": {
+        "rules": [
+          "object_near_point"
+        ],
+        "default_params": {
+          "object_ref": "sample_tube_2",
+          "target": [
+            -0.345,
+            -0.2,
+            0.1
+          ],
+          "metric": "xyz",
+          "threshold": 0.15
+        },
+        "description": "Target sample tube must be within 0.15 m (3D) of its configured rack slot."
+      }
+    },
+    {
+      "id": "ind2",
+      "environment": {
+        "gym_id": "SkippedBin",
+        "module": "mani_skill.envs.tasks.industrial_task.skipped_bin"
+      },
+      "domain": "industrial",
+      "source": {
+        "family": "lpx",
+        "kind": "task_implementation"
+      },
+      "default_reset": {
+        "seed": 0,
+        "layout_id": 6,
+        "params": {
+          "layout_config": {
+            "num_boxes": 4,
+            "box_positions": {
+              "B1": [
+                -0.05,
+                -0.25,
+                0.05
+              ],
+              "B2": [
+                -0.05,
+                -0.1,
+                0.05
+              ],
+              "B3": [
+                -0.1,
+                0.05,
+                0.05
+              ],
+              "B4": [
+                -0.05,
+                0.2,
+                0.05
+              ]
+            }
+          },
+          "skip_box": "B4",
+          "open_boxes": [
+            "B4",
+            "B2",
+            "B3"
+          ],
+          "repeat_id": 1
+        }
+      },
+      "max_steps": 1300,
+      "evaluator": {
+        "rules": [
+          "lid_open"
+        ],
+        "default_params": {
+          "object_ref": "B1"
+        },
+        "description": "The target box lid must be open, matching the LPX ind2 task description."
+      }
+    },
+    {
+      "id": "ind3",
+      "environment": {
+        "gym_id": "PlugRestoration",
+        "module": "mani_skill.envs.tasks.industrial_task.plug_restoration"
+      },
+      "domain": "industrial",
+      "source": {
+        "family": "lpx",
+        "kind": "task_implementation"
+      },
+      "default_reset": {
+        "seed": 0,
+        "layout_id": 1,
+        "params": {
+          "layout_config": {
+            "sockets": [
+              "S1",
+              "S2",
+              "S3",
+              "S4",
+              "S5"
+            ],
+            "positions": {
+              "S1": [
+                -0.3,
+                0.3,
+                0.01
+              ],
+              "S2": [
+                -0.3,
+                0.15,
+                0.01
+              ],
+              "S3": [
+                -0.3,
+                0.0,
+                0.01
+              ],
+              "S4": [
+                -0.3,
+                -0.15,
+                0.01
+              ],
+              "S5": [
+                -0.3,
+                -0.3,
+                0.01
+              ]
+            }
+          },
+          "loose_peg": [
+            "S3",
+            "S2",
+            "S4"
+          ],
+          "remove_from": "S1",
+          "distractor_event": "",
+          "repeat_id": 1
+        }
+      },
+      "max_steps": 1300,
+      "evaluator": {
+        "rules": [
+          "plug_inserted"
+        ],
+        "default_params": {
+          "object_ref": "S1",
+          "socket_ref": "S1",
+          "lateral_threshold": 0.015,
+          "min_insert_depth": 0.002
+        },
+        "description": "Target plug must satisfy the manifest-defined lateral alignment and insertion-depth thresholds in the target socket frame."
+      }
+    },
+    {
+      "id": "ind5",
+      "environment": {
+        "gym_id": "CrossArmPackingHandoff",
+        "module": "mani_skill.envs.tasks.industrial_task.cross_arm_packing_handoff"
+      },
+      "domain": "industrial",
+      "source": {
+        "family": "lpx",
+        "kind": "task_implementation"
+      },
+      "default_reset": {
+        "seed": 0,
+        "layout_id": 7,
+        "params": {
+          "layout_config": {
+            "parts": [
+              "P1",
+              "P2",
+              "P3"
+            ],
+            "positions": {
+              "P1": [
+                -0.3,
+                0.25,
+                0.02
+              ],
+              "P2": [
+                -0.2,
+                0.35,
+                0.06
+              ],
+              "P3": [
+                -0.2,
+                0.25,
+                0.02
+              ]
+            },
+            "part_types": {
+              "P1": "h_shape",
+              "P2": "screw",
+              "P3": "hex_prism"
+            }
+          },
+          "handoff": [
+            "P1",
+            "P2",
+            "P3"
+          ],
+          "distractor_event": "P2",
+          "repeat_id": 1
+        }
+      },
+      "max_steps": 3800,
+      "evaluator": {
+        "rules": [
+          "object_in_circle"
+        ],
+        "default_params": {
+          "object_ref": "P3",
+          "center": [
+            -0.5,
+            0.0
+          ],
+          "radius": 0.08,
+          "metric": "xy"
+        },
+        "description": "The target part must be placed on the yellow pad/workspace center, matching the LPX ind5 task description."
+      }
+    },
+    {
+      "id": "house1",
+      "environment": {
+        "gym_id": "SceneH1_01Env",
+        "module": "mani_skill.envs.tasks.custom_task.household.scene_H1_01"
+      },
+      "domain": "household",
+      "source": {
+        "family": "kn",
+        "kind": "task_implementation"
+      },
+      "default_reset": {
+        "seed": 0,
+        "layout_id": 0,
+        "params": {
+          "repeat_id": 1
+        }
+      },
+      "max_steps": 1300,
+      "evaluator": {
+        "rules": [
+          "object_near_point"
+        ],
+        "default_params": {
+          "object_ref": "plate1",
+          "target": [
+            -0.08,
+            0.06,
+            0.12
+          ],
+          "metric": "xy",
+          "threshold": 0.05
+        },
+        "description": "Target plate must be within 0.05 m of its configured rack slot in XY."
+      }
+    },
+    {
+      "id": "house3",
+      "environment": {
+        "gym_id": "SceneH3_04Env",
+        "module": "mani_skill.envs.tasks.custom_task.household.scene_H3_04"
+      },
+      "domain": "household",
+      "source": {
+        "family": "kn",
+        "kind": "task_implementation"
+      },
+      "default_reset": {
+        "seed": 0,
+        "layout_id": 0,
+        "params": {
+          "repeat_id": 1
+        }
+      },
+      "max_steps": 1300,
+      "evaluator": {
+        "rules": [
+          "object_near_point"
+        ],
+        "default_params": {
+          "object_ref": "bowl1",
+          "target": [
+            -0.35,
+            0.0,
+            0.05
+          ],
+          "metric": "xy",
+          "threshold": 0.1
+        },
+        "description": "Target bowl must be within 0.10 m of its configured target in XY."
+      }
+    },
+    {
+      "id": "house5",
+      "environment": {
+        "gym_id": "SceneH5_02Env",
+        "module": "mani_skill.envs.tasks.custom_task.household.scene_H5_02"
+      },
+      "domain": "household",
+      "source": {
+        "family": "kn",
+        "kind": "task_implementation"
+      },
+      "default_reset": {
+        "seed": 0,
+        "layout_id": 0,
+        "params": {
+          "repeat_id": 1
+        }
+      },
+      "max_steps": 2300,
+      "evaluator": {
+        "rules": [
+          "object_near_initial_position",
+          "object_near_point"
+        ],
+        "default_params": {
+          "object_ref": "plate1",
+          "metric": "xyz",
+          "threshold": 0.1
+        },
+        "description": "Target plate must return within 0.10 m (3D) of its episode-start position for the default return mode."
+      }
+    }
+  ]
+}

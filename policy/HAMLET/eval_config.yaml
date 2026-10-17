@@ -1,0 +1,34 @@
+# GITBench evaluation configuration for a trained HAMLET/GR00T N1.6 checkpoint.
+policy: HAMLET:make_policy
+
+tasks: [bio2, bio4, bio5, ind2, ind3, ind5, house1, house3, house5]
+split: test
+episodes: 1
+start_episode: 0
+max_steps: null
+stop_on_success: true
+success_mode: ever
+terminate_on_success: false
+
+observation:
+  mode: rgbd
+
+render:
+  mode: rgb_array
+  shader: default
+  sim_backend: auto
+
+video:
+  enabled: true
+  fps: 30
+
+resume: true
+
+output:
+  root: eval_results
+  run_name: hamlet
+  timestamp: true
+  run_dir: null
+  log_file: log.json
+  summary_file: summary.json
+  video_dir: videos

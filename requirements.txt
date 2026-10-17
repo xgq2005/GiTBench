@@ -1,0 +1,13 @@
+numpy>=1.22,<2
+scipy
+gymnasium>=0.29.1
+pyyaml
+transforms3d
+trimesh
+imageio
+imageio-ffmpeg
+IPython
+tabulate
+tqdm
+tyro>=0.8.5
+nvidia-ml-py

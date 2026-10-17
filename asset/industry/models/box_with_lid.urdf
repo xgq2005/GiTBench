@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<robot name="edge_hinged_box">
+
+  <material name="box_body">
+    <color rgba="0.12 0.12 0.12 1.0"/>
+  </material>
+  <material name="lid_color">
+    <color rgba="0.12 0.12 0.12 1.0"/>
+  </material>
+
+  <!-- ===== 底座 ===== -->
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0.005"/>
+      <geometry><box size="0.10 0.10 0.01"/></geometry>
+      <material name="box_body"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.005"/>
+      <geometry><box size="0.10 0.10 0.01"/></geometry>
+    </collision>
+    <inertial>
+      <mass value="1.20"/> <!-- 0.15 * 8 -->
+      <origin xyz="0 0 0.005"/>
+      <inertia ixx="4e-3" ixy="0" ixz="0"
+               iyy="4e-3" iyz="0"
+               izz="4e-3"/>
+    </inertial>
+  </link>
+
+  <!-- ===== 前壁 ===== -->
+  <link name="front_wall">
+    <visual>
+      <origin xyz="0 0.045 0.05"/>
+      <geometry><box size="0.10 0.01 0.10"/></geometry>
+      <material name="box_body"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0.045 0.05"/>
+      <geometry><box size="0.10 0.01 0.10"/></geometry>
+    </collision>
+  </link>
+
+  <!-- ===== 后壁（铰链侧） ===== -->
+  <link name="back_wall">
+    <visual>
+      <origin xyz="0 -0.045 0.05"/>
+      <geometry><box size="0.10 0.01 0.10"/></geometry>
+      <material name="box_body"/>
+    </visual>
+    <collision>
+      <origin xyz="0 -0.045 0.05"/>
+      <geometry><box size="0.10 0.01 0.10"/></geometry>
+    </collision>
+  </link>
+
+  <!-- ===== 侧壁 ===== -->
+  <link name="left_wall">
+    <visual>
+      <origin xyz="-0.045 0 0.05"/>
+      <geometry><box size="0.01 0.10 0.10"/></geometry>
+      <material name="box_body"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.045 0 0.05"/>
+      <geometry><box size="0.01 0.10 0.10"/></geometry>
+    </collision>
+  </link>
+
+  <link name="right_wall">
+    <visual>
+      <origin xyz="0.045 0 0.05"/>
+      <geometry><box size="0.01 0.10 0.10"/></geometry>
+      <material name="box_body"/>
+    </visual>
+    <collision>
+      <origin xyz="0.045 0 0.05"/>
+      <geometry><box size="0.01 0.10 0.10"/></geometry>
+    </collision>
+  </link>
+
+  <!-- ===== 盖子 ===== -->
+  <link name="lid_link">
+    <visual>
+      <origin xyz="-0.05 0 0.005"/>
+      <geometry><box size="0.104 0.104 0.01"/></geometry>
+      <material name="lid_color"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.05 0 0.005"/>
+      <geometry><box size="0.104 0.104 0.01"/></geometry>
+    </collision>
+    <inertial>
+      <mass value="0.16"/> <!-- 0.02 * 8 -->
+      <origin xyz="0 0 0.005"/>
+      <inertia ixx="1.6e-3" ixy="0" ixz="0"
+               iyy="1.6e-3" iyz="0"
+               izz="1.6e-3"/>
+    </inertial>
+  </link>
+
+  <!-- ===== 盖子把手（直径 2cm） ===== -->
+  <link name="lid_handle">
+    <visual>
+      <origin xyz="-0.096 0.0 0.002" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.02" length="0.004"/>
+      </geometry>
+      <material name="lid_color"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.096 0.0 0.002" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.02" length="0.004"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.04"/> <!-- 0.005 * 8 -->
+      <origin xyz="0 0 0"/>
+      <inertia ixx="8e-6" ixy="0" ixz="0"
+               iyy="8e-6" iyz="0"
+               izz="8e-6"/>
+    </inertial>
+  </link>
+
+  <!-- ===== 固定关节 ===== -->
+  <joint name="j_front" type="fixed">
+    <parent link="base_link"/>
+    <child link="front_wall"/>
+  </joint>
+
+  <joint name="j_back" type="fixed">
+    <parent link="base_link"/>
+    <child link="back_wall"/>
+  </joint>
+
+  <joint name="j_left" type="fixed">
+    <parent link="base_link"/>
+    <child link="left_wall"/>
+  </joint>
+
+  <joint name="j_right" type="fixed">
+    <parent link="base_link"/>
+    <child link="right_wall"/>
+  </joint>
+
+  <!-- ===== 旋转铰链 ===== -->
+  <joint name="lid_joint" type="revolute">
+    <parent link="back_wall"/>
+    <child link="lid_link"/>
+    <origin xyz="0.05 0 0.10"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="0" upper="2" effort="10" velocity="3"/>
+    <dynamics damping="0.005" friction="0.01"/>
+  </joint>
+
+  <joint name="lid_handle_joint" type="fixed">
+    <parent link="lid_link"/>
+    <child link="lid_handle"/>
+  </joint>
+
+</robot>
+

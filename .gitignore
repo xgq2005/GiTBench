@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+.pytest_cache/
+.mypy_cache/
+.cache/
+gitbench.egg-info/
+third_party/ManiSkill-3/.venv/
+eval_results/
+demos/
+data/
+*.mp4
+*.hdf5
+*.h5

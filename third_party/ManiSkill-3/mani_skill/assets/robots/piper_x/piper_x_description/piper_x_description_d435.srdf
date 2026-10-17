@@ -1,0 +1,82 @@
+<?xml version="1.0" ?>
+<robot name="piper_x_description_d435">
+    <!-- 主要关节组 -->
+    <group name="arm">
+        <joint name="joint1"/>
+        <joint name="joint2"/>
+        <joint name="joint3"/>
+        <joint name="joint4"/>
+        <joint name="joint5"/>
+        <joint name="joint6"/>
+        <joint name="joint7"/>
+        <joint name="joint8"/>
+    </group>
+
+    <!-- 夹爪组（基于link定义，类似panda的hand组） -->
+    <group name="gripper">
+        <link name="Link7"/>
+        <link name="Link8"/>
+        <link name="piper_x_hand_tcp"/>
+    </group>
+
+    <!-- 可选的完整机械臂链 -->
+    <group name="manipulator">
+        <chain base_link="base_link" tip_link="camera_link"/>
+    </group>
+
+    <!-- 预定义姿态 -->
+    <group_state name="home" group="arm">
+        <joint name="joint1" value="0.0"/>
+        <joint name="joint2" value="1.57"/>
+        <joint name="joint3" value="-1.48355"/>
+        <joint name="joint4" value="0.0"/>
+        <joint name="joint5" value="0.0"/>
+        <joint name="joint6" value="0.0"/>
+        <joint name="joint7" value="0.025"/>
+        <joint name="joint8" value="-0.025"/>
+    </group_state>
+
+    <!-- 末端执行器定义 -->
+    <end_effector name="eef" parent_link="camera_link" group="gripper"/>
+
+    <!-- 虚拟关节 -->
+    <virtual_joint name="virtual_joint" type="fixed" parent_frame="world" child_link="base_link"/>
+
+    <!-- 禁用碰撞（按照panda的风格组织） -->
+    <!-- 相邻连杆的碰撞禁用 -->
+    <disable_collisions link1="base_link" link2="Link1" reason="Adjacent"/>
+    <disable_collisions link1="Link1" link2="Link2" reason="Adjacent"/>
+    <disable_collisions link1="Link2" link2="Link3" reason="Adjacent"/>
+    <disable_collisions link1="Link3" link2="Link4" reason="Adjacent"/>
+    <disable_collisions link1="Link4" link2="Link5" reason="Adjacent"/>
+    <disable_collisions link1="Link5" link2="Link6" reason="Adjacent"/>
+    <disable_collisions link1="Link6" link2="Link7" reason="Adjacent"/>
+    <disable_collisions link1="Link7" link2="Link8" reason="Adjacent"/>
+    <disable_collisions link1="Link8" link2="piper_x_hand_tcp" reason="Adjacent"/>
+    <disable_collisions link1="piper_x_hand_tcp" link2="camera_link" reason="Adjacent"/>
+
+    <!-- 夹爪相关链路的碰撞禁用 -->
+    <disable_collisions link1="Link7" link2="Link8" reason="Adjacent"/>
+    <disable_collisions link1="Link7" link2="camera_link" reason="Default"/>
+    <disable_collisions link1="Link8" link2="camera_link" reason="Default"/>
+    <disable_collisions link1="Link7" link2="piper_x_hand_tcp" reason="Default"/>
+    <disable_collisions link1="Link8" link2="piper_x_hand_tcp" reason="Default"/>
+    <disable_collisions link1="piper_x_hand_tcp" link2="camera_link" reason="Default"/>
+
+    <!-- 基座与末端执行器（相机） -->
+    <disable_collisions link1="base_link" link2="camera_link" reason="Base and end effector"/>
+
+    <!-- 非相邻链路的碰撞禁用（可选的，根据实际情况添加） -->
+    <!--
+    <disable_collisions link1="Link1" link2="Link3" reason="Never"/>
+    <disable_collisions link1="Link1" link2="Link4" reason="Never"/>
+    <disable_collisions link1="Link2" link2="Link4" reason="Never"/>
+    <disable_collisions link1="Link2" link2="Link6" reason="Never"/>
+    <disable_collisions link1="Link3" link2="Link5" reason="Never"/>
+    <disable_collisions link1="Link3" link2="Link6" reason="Never"/>
+    -->
+
+    <!-- 被动关节定义 -->
+    <passive_joint name="tcp_joint"/>
+    <passive_joint name="camera_joint"/>
+</robot>

@@ -1,0 +1,12 @@
+policy: rdt:make_policy
+tasks: [bio2, bio4, bio5, ind2, ind3, ind5, house1, house3, house5]
+split: test
+episodes: 1
+start_episode: 0
+max_steps: null
+stop_on_success: true
+observation: {mode: rgbd}
+render: {mode: rgb_array, shader: default, sim_backend: auto}
+video: {enabled: true, fps: 30}
+resume: true
+output: {root: eval_results, run_name: rdt, timestamp: true, run_dir: null}

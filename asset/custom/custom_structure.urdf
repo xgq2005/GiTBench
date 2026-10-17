@@ -1,0 +1,150 @@
+<?xml version="1.0"?>
+<robot name="custom_structure">
+  <!-- 定义材料属性，让不同部件有颜色区分 -->
+  <material name="blue">
+    <color rgba="0 0 1 1"/>
+  </material>
+  <material name="red">
+    <color rgba="1 0 0 1"/>
+  </material>
+  <material name="green">
+    <color rgba="0 1 0 1"/>
+  </material>
+
+  <!-- ================= 1. 定义所有 link（长方体部件） ================= -->
+
+  <!-- 底部水平长方体1 (左) -->
+  <link name="horizontal_1">
+    <visual>
+      <geometry>
+        <box size="0.025 0.025 0.3"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.025 0.025 0.3"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- 底部水平长方体2 (右) -->
+  <!-- 注意：它的位置将在 joint 中定义 -->
+  <link name="horizontal_2">
+    <visual>
+      <geometry>
+        <box size="0.025 0.025 0.3"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.025 0.025 0.3"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- 垂直连接长方体 (连接水平1和水平2) -->
+  <!-- 一共有 (0.3 / 0.05) + 1 = 7 个 -->
+  <!-- 这里仅示例第一个、中间一个和最后一个，其余类似 -->
+  <link name="vertical_connector_1">
+    <visual>
+      <geometry>
+        <box size="0.025 0.025 0.15"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.025 0.025 0.15"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  <!-- ... 此处省略 vertical_connector_2 到 vertical_connector_6 ... -->
+
+  <link name="vertical_connector_7">
+    <visual>
+      <geometry>
+        <box size="0.025 0.025 0.15"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.025 0.025 0.15"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- 竖直插入长方体 (插入到水平1上) -->
+  <link name="vertical_insert_1">
+    <visual>
+      <geometry>
+        <box size="0.025 0.025 0.15"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.025 0.025 0.15"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- 竖直插入长方体 (插入到水平2上) -->
+  <link name="vertical_insert_2">
+    <visual>
+      <geometry>
+        <box size="0.025 0.025 0.15"/>
+      </geometry>
+      <material name="green"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.025 0.025 0.15"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- ================= 2. 定义所有 joint（固定连接） ================= -->
+
+  <!-- 将水平2固定在水平1上，间距0.15 -->
+  <!-- 假设水平1的中心在原点，沿Y轴方向放置，则水平2的中心在Y方向偏移0.15 -->
+  <joint name="joint_horizontal_2" type="fixed">
+    <parent link="horizontal_1"/>
+    <child link="horizontal_2"/>
+    <origin xyz="0 0.15 0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- 垂直连接件1：固定在水平1上，位于连接处 -->
+  <!-- 假设连接件在水平1的末端，即Y方向偏移 -0.15 -->
+  <joint name="joint_connector_1" type="fixed">
+    <parent link="horizontal_1"/>
+    <child link="vertical_connector_1"/>
+    <origin xyz="0 -0.15 0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- 垂直连接件7：固定在水平2上 -->
+  <joint name="joint_connector_7" type="fixed">
+    <parent link="horizontal_2"/>
+    <child link="vertical_connector_7"/>
+    <!-- 水平2的中心在Y=0.15处，其末端在 Y=0.15 + 0.15 = 0.30 -->
+    <origin xyz="0 0.30 0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- 竖直插入件1：固定在水平1上，假设插入在中心位置 -->
+  <joint name="joint_insert_1" type="fixed">
+    <parent link="horizontal_1"/>
+    <child link="vertical_insert_1"/>
+    <origin xyz="0 0 0.075" rpy="0 0 0"/> <!-- Z方向向上偏移半个高度 -->
+  </joint>
+
+  <!-- 竖直插入件2：固定在水平2上 -->
+  <joint name="joint_insert_2" type="fixed">
+    <parent link="horizontal_2"/>
+    <child link="vertical_insert_2"/>
+    <origin xyz="0 0 0.075" rpy="0 0 0"/>
+  </joint>
+
+</robot>

@@ -1,0 +1,13 @@
+# Extra packages for RDT on top of the GITBench environment.
+# GITBench already supplies torch, torchvision, numpy, h5py, Pillow, OpenCV,
+# PyYAML, imageio, tqdm, packaging, and the simulator stack.
+accelerate==0.30.1
+deepspeed==0.14.2
+diffusers==0.27.2
+huggingface-hub
+imgaug==0.4.0
+safetensors
+sentencepiece==0.2.0
+swanlab
+timm==1.0.3
+transformers==4.41.0
